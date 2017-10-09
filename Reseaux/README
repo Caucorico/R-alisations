@@ -1,0 +1,35 @@
+
+ Bonjour!
+
+ Avant de commencer votre travail lisez ce texte JUSQU'A LA FIN.
+
+ Le repertoire ou vous etes actuellement contient:
+
+        - le fichier 'README' que vous etes en train de lire;
+
+        - le sous-repertoire 'bin' qui contient les executables dont
+          le comportement vous allez etudiez
+
+        - le fichier 'Travail-a-Faire' qui contient les textes des
+          exersices;
+
+	- le fichier 'port-scan.txt' ou vous mettrez certains resultats
+          de votre travail; ecrivez tout au debut de ce fichier l'adresse 
+          IP de la machine sur laquelle vous travaillez;
+
+        - le fichier 'netconfig.txt' ou vous mettrez votre rapport 
+          concernant la configuration d'un reseau sous 'marionnet';
+
+        - le fichier 'reponses.txt' ou vous mettrez les autres reponses 
+          "ecrites"; ecrivez tout au debut de ce fichier l'adresse IP 
+          de la machine sur laquelle vous travaillez.
+
+ Apres avoir termine votre travail OU BIEN 5 MIN AVANT LA FIN des heures
+ reglementaires archivez et compressez le repertoire de travail avec
+ son contenu, applez l'archive compresse "votrenomlogin-ctrl-asr-2-2-16.tar.gz".
+ Si tout va bien cet archive compresse doit se trouver directement dans
+ votre repertoire DOMICILE d'ou il sera recupere automatiquement.
+
+ Tout est clair? Tres bien, allez y...
+
+ Bon courage!

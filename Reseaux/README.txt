@@ -1,0 +1,1 @@
+Exemple de travail effectué en réseau. Lire netconfig.txt

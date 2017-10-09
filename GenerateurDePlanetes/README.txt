@@ -1,0 +1,1 @@
+L'utilisation de ce générateur demande l'installation de love-0.10.2 ou supérieur au préalable.

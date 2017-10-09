@@ -1,0 +1,169 @@
+1
+
+  (1) Le nom 'pizza.net'  est:
+     (a) le nom d'un host?
+     (b) le nom d'un domaine?
+     (c) les deux?
+     (d) autre (precisez)? 
+
+  (2) Quels serveurs de noms servent le domaine correspondant
+       (donnez ses adresses)?
+       
+  (3) Quelles machines recoivent les "courriels" pour le domaine
+       correspondant (donnez ses adresses)?
+       
+  Mettez vos reponses _justifiees_ dans le fichier 
+  "reponses.txt"
+
+2
+
+   Le sous-repertoire 'bin/' de votre repertoire de travail contient
+   l'executable "doingit". Lancez le. L'etat du reseau sur la machine
+   ou vous travaillez a ete change. 
+
+   A quoi consiste ce changement? Comment vous l'avez detecte? 
+
+   Mettez vos reponses ainsi que les commandes que vous avez donnee
+   pour les trouver dans le fichier "reponses.txt"
+
+
+   3
+
+   Le sous-repertoire 'bin/' de votre repertoire de travail contient
+   l'executable "whatdoido". Lancez le. Quelle activite est apparue 
+   dans le reseau? Comment vous l'avez detecte? Qu'est ce qu'il fait, 
+   ce programme? Apres avoir termine vos tests, supprimez _obligatoirement_
+   le processus correspondant.  
+
+   Mettez les reponses ansi que les explications necessaires dans 
+   le fichier "reponses.txt".
+
+   N'oubliez pas: vos reponses doivent etre justifiees
+                  ------------------------------------
+
+4
+
+  Un certain nombre d'applications, qui jouent les roles des serveurs
+  TCP, tournent sur la machine a l'adresse 172.16.1.118. Les applications
+  en question utilisent les ports (pas tous!) entre 30700 et 30800 et
+  (important!) elles sont disponible _uniquement_ depuis un client qui
+  utilise le port 22222 comme le port source. 
+
+  Votre mission consiste a decouvrir les ports occupes par les applications
+  en question. Vous pouvez utiliser tous les moyens disponible sur la machine
+  ou vous travaillez.
+
+  Vous mettez dans le fichier 'port-scan.txt' la description courte mais
+  comprehensible de votre demarche ainsi que la liste des ports decouverts
+
+5
+
+  DEFINITIONS
+    soit deux hosts X, Y.
+    (a)
+      disons que "Y est disponible pour ICMP requete depuis X" ssi
+      chaque datagramme ICMP du type 'icmp echo-request' emis par X
+      arrive a Y. symboliquement:
+           X->icmp.q-->Y
+      conformement
+           X->icmp.q-/->Y
+      veut dire qu'aucun datagramme ICMP du type 'icmp echo-request'
+      emis par X n'arrive a Y
+    (b)
+      disons que "Y est disponible pour ICMP reponse depuis X" ssi
+      chaque datagramme ICMP du type 'icmp echo-reply' emis par X
+      arrive a Y. symboliquement:
+           X->icmp.r-->Y
+      conformement
+           X->icmp.r-/->Y
+      veut dire qu'aucun datagramme ICMP du type 'icmp echo-reply'
+      emis par X n'arrive a Y
+    (c)
+      disons que "Y est disponible pour ICMP depuis X" ssi
+           X->icmp.q-->Y
+      et
+           X->icmp.r-->Y
+     symboliquement:
+           X->icmp-->Y
+     conformement
+           X->icmp-/->Y
+     veut dire que soit X->icmp.q-/->Y soit X->icmp.r-/->Y soit "les deux".
+     par consequant cela signifie que Y ne repond pas au 'ping' depuis X.
+
+   soit un port numero N.
+   (d)
+     disons que "Y est disponible pour UDP depuis X, port N" ssi chaque  
+     serveur UDP, qui tourne sur Y, recoit les datagrammes UDP envoies
+     par un client UDP, qui tourne sur X et qui utilise le port numero
+     N comme le port source. symboliquement:
+          X->udp+N-->Y
+     conformement
+          X->udp+N-/->Y
+     veut dire qu'aucun serveur UDP qui tourne sur Y ne recoit aucun
+     datagramme UDP envoie par un client UDP, qui tourne sur X et qui
+     utilise le port numero N comme le port source.
+   (e)
+     disons que "Y est disponible pour UDP depuis X, exepte le port N"
+     ssi chaque serveur UDP, qui tourne sur Y, recoit les datagrammes
+     UDP envoies par un client UDP, qui tourne sur X et qui utilise un
+     port source dont le numero est different de N. symboliquement:
+          X->udp-N-->Y
+   (f)
+     disons que "Y est disponible pour UDP depuis X" ssi pour chaque
+     port N
+          X->udp+N-->Y
+     symboliquement:
+          X->udp-->Y
+     conformement
+          X->UDP-/->Y
+     veut dire qu'il n'existe pas de port N tel que X->udp+N-->Y 
+     ou bien quel que soit un port N, on a X->UDP+N-/->Y.
+  FIN DEFINITIONS
+
+  Soit un reseau dont la topologie et les adresses sont comme suit:
+
+           192.168.10.3           192.168.10.5
+              M1                       M2
+              |                        |
+   S1:  ------+------------+-----------+----- 192.168.10.0/24  
+                           |
+                           | 192.168.10.1
+                           GW 
+                           | 172.16.1.1
+                           |
+   S2: ------+-------------+------------+---- 172.16.0.0/16 
+             |                          | 
+             K1                         K2 
+          172.16.1.7                 172.16.1.9
+
+   TRAVAIL A FAIRE:
+
+   (1) 
+      Creez avec "marionnet" le modele du reseau ci-dessus (vous n'etes pas
+      autorisez de changer les adresses ni la topologie indiquee ci-dessus).
+      Sauvegardez le projet obtenu sous le nom '<votre nom login>.mar'.
+   (2)
+      Configurez les machines de telles facons que: 
+
+           M1->icmp-->K2
+           K2->icmp-->K1
+           M1->icmp-/->K1
+           M2->icmp-/->K1
+           M1->udp+32323-->K2
+           M1->udp+32123-/->K2
+           M2->udp+32323-/->K1
+           M2->udp+32123-->K1
+
+      Vous etes autorises: 
+      - modifier les tables de routage sur toutes les machines
+      - utiliser 'iptables' sur toutes les machines
+      Vous n'etes pas autirises:
+      - modifier les adresses ni la topologie du reseau.
+
+      Mettez dans le fichier 'netconfig.txt' pour chaque machine: 
+      - la table de routage  
+      - les commandes effectuees pour obtenir cette table de routage 
+      - les regles d''iptables' si vous les avez utilises
+      - les commandes que vous avez donnee pour verifier les proprietes
+        du reseau formulees ci-dessus
+
